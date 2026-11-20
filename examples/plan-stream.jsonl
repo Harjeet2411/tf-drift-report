@@ -1,0 +1,6 @@
+{"@level": "info", "@message": "Terraform 1.9.8", "type": "version", "terraform": "1.9.8"}
+{"type": "resource_drift", "change": {"resource": {"addr": "aws_security_group.web", "resource_type": "aws_security_group"}, "action": "update"}}
+{"type": "planned_change", "change": {"resource": {"addr": "aws_db_instance.main", "resource_type": "aws_db_instance"}, "action": "replace", "reason": "cannot_update"}}
+{"type": "planned_change", "change": {"resource": {"addr": "aws_s3_bucket.logs", "resource_type": "aws_s3_bucket"}, "action": "delete"}}
+{"type": "planned_change", "change": {"resource": {"addr": "aws_iam_role.deploy", "resource_type": "aws_iam_role"}, "action": "noop"}}
+{"type": "change_summary", "changes": {"add": 1, "change": 0, "remove": 1, "operation": "plan"}}

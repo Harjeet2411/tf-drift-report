@@ -1,0 +1,278 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.8",
+  "resource_drift": [
+    {
+      "address": "aws_security_group.web",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "web",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "id": "sg-0a1b2c",
+          "name": "web",
+          "ingress": [
+            {
+              "from_port": 443,
+              "to_port": 443,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "10.0.0.0/8"
+              ]
+            }
+          ],
+          "tags": {
+            "env": "prod"
+          }
+        },
+        "after": {
+          "id": "sg-0a1b2c",
+          "name": "web",
+          "ingress": [
+            {
+              "from_port": 443,
+              "to_port": 443,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            },
+            {
+              "from_port": 22,
+              "to_port": 22,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            }
+          ],
+          "tags": {
+            "env": "prod"
+          }
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_instance.app[0]",
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "app[0]",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "id": "i-0123",
+          "instance_type": "t3.large",
+          "tags": {
+            "env": "prod",
+            "owner": "platform"
+          }
+        },
+        "after": {
+          "id": "i-0123",
+          "instance_type": "t3.large",
+          "tags": {
+            "env": "prod"
+          }
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    }
+  ],
+  "resource_changes": [
+    {
+      "address": "aws_security_group.web",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "web",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "id": "sg-0a1b2c",
+          "name": "web",
+          "ingress": [
+            {
+              "from_port": 443,
+              "to_port": 443,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            },
+            {
+              "from_port": 22,
+              "to_port": 22,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            }
+          ],
+          "tags": {
+            "env": "prod"
+          }
+        },
+        "after": {
+          "id": "sg-0a1b2c",
+          "name": "web",
+          "ingress": [
+            {
+              "from_port": 443,
+              "to_port": 443,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "10.0.0.0/8"
+              ]
+            }
+          ],
+          "tags": {
+            "env": "prod"
+          }
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_instance.app[0]",
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "app[0]",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "id": "i-0123",
+          "instance_type": "t3.large",
+          "tags": {
+            "env": "prod"
+          }
+        },
+        "after": {
+          "id": "i-0123",
+          "instance_type": "t3.large",
+          "tags": {
+            "env": "prod",
+            "owner": "platform"
+          }
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_db_instance.main",
+      "mode": "managed",
+      "type": "aws_db_instance",
+      "name": "main",
+      "change": {
+        "actions": [
+          "delete",
+          "create"
+        ],
+        "before": {
+          "id": "db-1",
+          "engine": "postgres",
+          "engine_version": "15.4",
+          "allocated_storage": 100,
+          "password": "hunter2"
+        },
+        "after": {
+          "engine": "postgres",
+          "engine_version": "16.1",
+          "allocated_storage": 100,
+          "password": "hunter2"
+        },
+        "after_unknown": {
+          "id": true,
+          "arn": true
+        },
+        "before_sensitive": {
+          "password": true
+        },
+        "after_sensitive": {
+          "password": true
+        },
+        "replace_paths": [
+          [
+            "engine_version"
+          ]
+        ]
+      },
+      "action_reason": "replace_because_cannot_update"
+    },
+    {
+      "address": "aws_s3_bucket.logs",
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "logs",
+      "change": {
+        "actions": [
+          "delete"
+        ],
+        "before": {
+          "id": "acme-logs",
+          "bucket": "acme-logs"
+        },
+        "after": null,
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_lb_target_group_attachment.app",
+      "mode": "managed",
+      "type": "aws_lb_target_group_attachment",
+      "name": "app",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "port": 8080
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "aws_iam_role.deploy",
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "deploy",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "name": "deploy"
+        },
+        "after": {
+          "name": "deploy"
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    }
+  ]
+}
